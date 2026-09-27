@@ -2,13 +2,16 @@
 
 import { Check, Minus, Plus } from "lucide-react";
 import { buildCartKey, useCartStore, type CartItem } from "@/lib/cart-store";
+import type { OrderSize } from "@/lib/validation/orders";
 import { formatPrice } from "@/lib/menu-data";
 import { cn } from "@/lib/utils";
 
 type AddToCartButtonProps = {
+  productId: string | null;
   slug: string;
   name: string;
   groupName: string;
+  size: OrderSize;
   sizeLabel: string;
   sizeNote: string;
   price: number;
@@ -17,9 +20,11 @@ type AddToCartButtonProps = {
 };
 
 export function AddToCartButton({
+  productId,
   slug,
   name,
   groupName,
+  size,
   sizeLabel,
   sizeNote,
   price,
@@ -34,7 +39,7 @@ export function AddToCartButton({
   return (
     <button
       type="button"
-      onClick={() => addItem({ slug, name, groupName, sizeLabel, sizeNote, price })}
+      onClick={() => addItem({ productId, slug, name, groupName, size, sizeLabel, sizeNote, price })}
       aria-label={`Tambah ${name} ukuran ${sizeLabel} ke keranjang`}
       className={cn(
         "inline-flex items-center justify-center gap-2 rounded-full border border-[#241c18] bg-[#241c18] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#c9674b] hover:border-[#c9674b]",

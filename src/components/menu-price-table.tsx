@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils";
 import { AddToCartButton } from "@/components/cart-controls";
+import type { OrderSize } from "@/lib/validation/orders";
 import {
   createOrderLink,
   formatPrice,
@@ -11,18 +12,22 @@ import {
 
 function PriceCell({
   value,
+  productId,
   itemName,
   slug,
   groupName,
   size,
+  sizeKey,
   sizeNote,
   className,
 }: {
   value?: number;
+  productId: string | null;
   itemName: string;
   slug: string;
   groupName: string;
   size: string;
+  sizeKey: OrderSize;
   sizeNote: string;
   className?: string;
 }) {
@@ -41,9 +46,11 @@ function PriceCell({
         {formatPrice(value)}
       </a>
       <AddToCartButton
+        productId={productId}
         slug={slug}
         name={itemName}
         groupName={groupName}
+        size={sizeKey}
         sizeLabel={size}
         sizeNote={sizeNote}
         price={value}
@@ -64,28 +71,34 @@ function MenuRow({ item, group }: { item: MenuItem; group: MenuGroup }) {
         </div>
         <PriceCell
           value={item.regular}
+          productId={item.productId ?? null}
           itemName={item.name}
           slug={slugifyMenuItem(item.name)}
           groupName={group.name}
           size={sizeLabels.regular}
+          sizeKey="regular"
           sizeNote="Reguler"
           className="w-16 sm:w-20"
         />
         <PriceCell
           value={item.large}
+          productId={item.productId ?? null}
           itemName={item.name}
           slug={slugifyMenuItem(item.name)}
           groupName={group.name}
           size={sizeLabels.large}
+          sizeKey="large"
           sizeNote="Large"
           className="w-16 sm:w-20"
         />
         <PriceCell
           value={item.liter}
+          productId={item.productId ?? null}
           itemName={item.name}
           slug={slugifyMenuItem(item.name)}
           groupName={group.name}
           size={sizeLabels.liter}
+          sizeKey="liter"
           sizeNote="1 Liter"
           className="w-20"
         />

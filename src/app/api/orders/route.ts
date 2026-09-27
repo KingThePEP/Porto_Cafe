@@ -4,6 +4,33 @@ import { siteConfig } from "@/lib/site-config";
 import { notifyOrder } from "@/lib/notify";
 import { firstIssueMessage, orderPayloadSchema } from "@/lib/validation/orders";
 
+type CreateOrderItem = {
+  productId: string | null;
+  productName: string;
+  sizeLabel: string;
+  price: number;
+  qty: number;
+  subtotal: number;
+};
+
+type CreateOrderResult = {
+  order: { id: string; total: number | string };
+  items: CreateOrderItem[] | null;
+};
+
+// Postgres melempar pesan yang aman untuk ditampilkan ke pembeli, misalnya
+// "Menu tidak ditemukan" atau "Cappuccino sedang tidak tersedia". Sisanya
+// dibikin generik supaya detail internal tidak bocor ke browser.
+function friendlyDatabaseError(message: string) {
+  if (
+    /tidak ditemukan|tidak tersedia|tidak valid|masih kosong|terlalu banyak/i.test(message)
+  ) {
+    return message;
+  }
+
+  return "Pesanan gagal disimpan. Coba lagi sebentar.";
+}
+
 export async function POST(request: Request) {
   let body: unknown;
 
@@ -36,36 +63,46 @@ export async function POST(request: Request) {
   }
 
   const supabase = createClient();
-  const orderId = crypto.randomUUID();
-  const { error: orderError } = await supabase.from("orders").insert({
-    id: orderId,
-    customer_name: order.customerName,
-    customer_phone: order.customerPhone,
-    order_type: order.orderType,
-    address: order.address ?? null,
-    notes: order.notes ? `${order.notes} [ukuran: ${items.map((item) => item.sizeLabel).join(", ")}]` : null,
-    total: order.total,
-    status: "pending",
+
+  // Harga dan total tidak pernah diambil dari client. Fungsi create_order()
+  // menghitung ulang dari tabel products, menulis orders + order_items dalam
+  // satu transaksi, dan mengembalikan nilai yang benar-benar tersimpan.
+  const { data, error } = await supabase.rpc("create_order", {
+    p_customer_name: order.customerName,
+    p_customer_phone: order.customerPhone,
+    p_order_type: order.orderType,
+    p_address: order.address ?? null,
+    p_notes: order.notes ?? null,
+    p_items: items.map((item) => ({
+      productId: item.productId,
+      size: item.size,
+      qty: item.qty,
+    })),
   });
 
-  if (orderError) {
-    return NextResponse.json({ error: "Pesanan gagal disimpan. Coba lagi sebentar." }, { status: 500 });
+  if (error || !data) {
+    const message = friendlyDatabaseError(error?.message ?? "create_order gagal");
+
+    // 400 untuk input yang tidak valid, 500 untuk masalah lain.
+    const isUserError = /tidak ditemukan|tidak tersedia|tidak valid|masih kosong|terlalu banyak/i.test(
+      error?.message ?? "",
+    );
+
+    return NextResponse.json(
+      { error: message },
+      { status: isUserError ? 400 : 500 },
+    );
   }
 
-  const { error: itemsError } = await supabase.from("order_items").insert(
-    items.map((item) => ({
-      order_id: orderId,
-      product_name: `${item.productName} (${item.sizeLabel})`,
-      price: item.price,
-      qty: item.qty,
-      subtotal: item.price * item.qty,
-    })),
-  );
-
-  if (itemsError) {
-    await supabase.from("orders").delete().eq("id", orderId);
-    return NextResponse.json({ error: "Detail pesanan gagal disimpan. Coba lagi sebentar." }, { status: 500 });
-  }
+  const result = data as CreateOrderResult;
+  const orderId = result.order.id;
+  const total = Number(result.order.total);
+  const savedItems = (result.items ?? []).map((item) => ({
+    productName: item.productName,
+    sizeLabel: item.sizeLabel,
+    price: Number(item.price),
+    qty: Number(item.qty),
+  }));
 
   const notification = await notifyOrder({
     kind: "order",
@@ -75,13 +112,18 @@ export async function POST(request: Request) {
     orderType: order.orderType,
     address: order.address ?? null,
     notes: order.notes ?? null,
-    total: order.total,
-    items,
+    total,
+    items: savedItems,
   });
 
   if (notification.error) {
     console.error("[notify] pesanan:", notification.error);
   }
 
-  return NextResponse.json({ orderId, notified: Boolean(notification.delivered) }, { status: 201 });
+  // total dikembalikan dari server supaya halaman konfirmasi menampilkan
+  // angka yang sama dengan yang tersimpan di database.
+  return NextResponse.json(
+    { orderId, total, notified: Boolean(notification.delivered) },
+    { status: 201 },
+  );
 }

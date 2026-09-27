@@ -1,13 +1,19 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
+import type { OrderSize } from "@/lib/validation/orders";
 
 export type CartItem = {
   key: string;
+  // uuid produk di Supabase; null kalau menu berasal dari data fallback lokal.
+  productId: string | null;
   slug: string;
   name: string;
   groupName: string;
+  size: OrderSize;
   sizeLabel: string;
   sizeNote: string;
+  // Hanya untuk tampilan. Saat checkout, harga ini diabaikan dan dihitung ulang
+  // oleh server dari tabel products.
   price: number;
   qty: number;
 };
@@ -64,6 +70,10 @@ export const useCartStore = create<CartState>()(
     }),
     {
       name: "gatchu-cart",
+      // v2: item keranjang menyimpan productId + size. Keranjang versi lama
+      // tidak punya kedua field itu, jadi Zustand membuangnya daripada
+      // mengirim pesanan tanpa identitas produk.
+      version: 2,
     },
   ),
 );

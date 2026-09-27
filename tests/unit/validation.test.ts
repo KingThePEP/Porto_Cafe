@@ -10,12 +10,12 @@ function issueOf(result: ReturnType<typeof orderPayloadSchema.safeParse>) {
   return firstIssueMessage(result.error);
 }
 
+// Tidak ada price/total di payload: harga selalu dihitung ulang di server.
 const validOrder = {
   customerName: "Budi Santoso",
   customerPhone: "081234567890",
   orderType: "pickup" as const,
-  total: 27000,
-  items: [{ productName: "Kopi Susu Gatchu", sizeLabel: "R", price: 15000, qty: 1 }],
+  items: [{ productId: "5668677a-8811-4cfb-88cc-6b930083de90", size: "regular" as const, qty: 1 }],
 };
 
 describe("orderPayloadSchema", () => {
@@ -51,9 +51,42 @@ describe("orderPayloadSchema", () => {
     expect(issueOf(result)).toBe("Keranjang masih kosong");
   });
 
-  it("menolak total nol atau negatif", () => {
-    expect(orderPayloadSchema.safeParse({ ...validOrder, total: 0 }).success).toBe(false);
-    expect(orderPayloadSchema.safeParse({ ...validOrder, total: -5 }).success).toBe(false);
+  it("menolak ukuran di luar regular/large/liter", () => {
+    const result = orderPayloadSchema.safeParse({
+      ...validOrder,
+      items: [{ productId: "5668677a-8811-4cfb-88cc-6b930083de90", size: "GRATIS", qty: 1 }],
+    });
+
+    expect(result.success).toBe(false);
+  });
+
+  it("menolak productId yang bukan uuid", () => {
+    const result = orderPayloadSchema.safeParse({
+      ...validOrder,
+      items: [{ productId: "kopi-susu-gatchu", size: "regular", qty: 1 }],
+    });
+
+    expect(result.success).toBe(false);
+    expect(issueOf(result)).toBe("Menu tidak valid");
+  });
+
+  it("membuang field harga yang diselundupkan client", () => {
+    const result = orderPayloadSchema.parse({
+      ...validOrder,
+      items: [{ productId: "5668677a-8811-4cfb-88cc-6b930083de90", size: "regular", qty: 1, price: 1 }],
+    });
+
+    expect(result.items[0]).toEqual({
+      productId: "5668677a-8811-4cfb-88cc-6b930083de90",
+      size: "regular",
+      qty: 1,
+    });
+  });
+
+  it("tidak menerima total sama sekali karena dihitung ulang di server", () => {
+    const result = orderPayloadSchema.parse({ ...validOrder, total: -5 });
+
+    expect(result).not.toHaveProperty("total");
   });
 
   it("menolak qty pecahan dan qty di luar batas", () => {

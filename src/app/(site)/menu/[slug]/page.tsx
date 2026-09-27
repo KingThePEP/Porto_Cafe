@@ -10,6 +10,7 @@ import { getMenuEntries, getMenuEntry } from "@/lib/data/menu";
 import { createOrderLink, formatPrice, sizeLabels } from "@/lib/menu-data";
 import { buildBreadcrumbJsonLd } from "@/lib/structured-data";
 import { siteConfig } from "@/lib/site-config";
+import type { OrderSize } from "@/lib/validation/orders";
 import { cn } from "@/lib/utils";
 
 type Params = {
@@ -104,10 +105,15 @@ export default async function MenuDetailPage({ params }: Params) {
   }
 
   const sizes = [
-    { label: sizeLabels.regular, value: entry.regular, note: "Reguler" },
-    { label: sizeLabels.large, value: entry.large, note: "Large" },
-    { label: sizeLabels.liter, value: entry.liter, note: "1 Liter" },
-  ].filter((size) => size.value);
+    { key: "regular", label: sizeLabels.regular, value: entry.regular, note: "Reguler" },
+    { key: "large", label: sizeLabels.large, value: entry.large, note: "Large" },
+    { key: "liter", label: sizeLabels.liter, value: entry.liter, note: "1 Liter" },
+  ].filter((size) => size.value) as {
+    key: OrderSize;
+    label: string;
+    value: number;
+    note: string;
+  }[];
 
   const productJsonLd = buildProductJsonLd(entry);
 
@@ -147,15 +153,17 @@ export default async function MenuDetailPage({ params }: Params) {
                   </div>
                   <div className="flex flex-wrap items-center gap-3">
                     <span className="text-lg font-semibold tracking-[-0.04em] text-[#c9674b]">
-                      {formatPrice(size.value as number)}
+                      {formatPrice(size.value)}
                     </span>
                     <AddToCartButton
+                      productId={entry.productId}
                       slug={entry.slug}
                       name={entry.name}
                       groupName={entry.groupName}
+                      size={size.key}
                       sizeLabel={size.label}
                       sizeNote={size.note}
-                      price={size.value as number}
+                      price={size.value}
                     />
                     <a
                       href={createOrderLink(entry.name, size.label)}

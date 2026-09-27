@@ -6,6 +6,9 @@ export type MenuItem = {
   large?: number;
   liter?: number;
   note?: string;
+  // Hanya terisi saat data berasal dari Supabase. Menu fallback lokal tidak
+  // punya uuid produk, jadi pesanan dari sana diarahkan ke WhatsApp.
+  productId?: string | null;
 };
 
 export type MenuGroup = {

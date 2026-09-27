@@ -36,6 +36,21 @@ test("item di keranjang bisa ditambah, dikurangi, dan dihapus", async ({ page })
   await expect(page.getByText(/Keranjang masih kosong/i)).toBeVisible();
 });
 
+test("keranjang menyimpan productId dan ukuran agar server bisa menghitung harga sendiri", async ({ page }) => {
+  await page.goto("/menu/kopi-susu-gatchu");
+  await page.getByRole("button", { name: /Tambah Kopi Susu Gatchu ukuran R ke keranjang/i }).click();
+
+  const stored = await page.evaluate(() => window.localStorage.getItem("gatchu-cart"));
+  const parsed = JSON.parse(stored ?? "{}") as { state?: { items?: Record<string, unknown>[] } };
+  const first = parsed.state?.items?.[0];
+
+  expect(first).toBeDefined();
+  // Kalau uuid tidak ikut tersimpan, server tidak bisa mengecek harga dan pesanan ditolak.
+  expect(typeof first?.productId).toBe("string");
+  expect(first?.productId).toMatch(/^[0-9a-f-]{36}$/);
+  expect(first?.size).toBe("regular");
+});
+
 test("form checkout menolak data tidak lengkap", async ({ page }) => {
   await page.goto("/menu/kopi-susu-gatchu");
   await page.getByRole("button", { name: /Tambah Kopi Susu Gatchu ukuran R ke keranjang/i }).click();
@@ -86,6 +101,14 @@ test("pesanan yang valid tersimpan, atau memberi jalan keluar lewat WhatsApp", a
   if (status === 201) {
     await expect(page).toHaveURL(/\/keranjang\/selesai/);
     await expect(page.getByRole("heading", { name: /Pesanan sudah/i })).toBeVisible();
+
+    // Server mengembalikan total yang benar-benar tersimpan, dan halaman
+    // konfirmasi harus memakainya, bukan total kiriman browser.
+    const body = (await apiResponse).json() as Promise<{ total?: number }>;
+    const { total } = await body;
+
+    expect(typeof total).toBe("number");
+    expect(total).toBeGreaterThan(0);
     return;
   }
 

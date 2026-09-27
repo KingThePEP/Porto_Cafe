@@ -1,9 +1,16 @@
 import { z } from "zod";
 
+export const orderSizeSchema = z.enum(["regular", "large", "liter"]);
+
+// Client hanya mengirim identitas produk, ukuran, dan jumlah. Harga SENGAJA
+// tidak ada di sini: server menghitung ulang dari tabel products, jadi nilai
+// yang dikirim browser tidak pernah dipakai. Field tambahan dari client juga
+// diabaikan oleh .strip() default Zod.
 export const orderItemSchema = z.object({
-  productName: z.string().trim().min(1, "Nama menu tidak boleh kosong").max(160),
-  sizeLabel: z.string().trim().min(1, "Ukuran tidak boleh kosong").max(20),
-  price: z.number().nonnegative("Harga tidak valid"),
+  // Zod 4 memakai satu parameter `error` untuk semua jenis kegagalan, termasuk
+  // nilai null yang bisa muncul dari menu fallback lokal tanpa uuid produk.
+  productId: z.string({ error: "Menu tidak valid" }).trim().uuid("Menu tidak valid"),
+  size: orderSizeSchema,
   qty: z.number().int("Jumlah harus bilangan bulat").min(1).max(50, "Jumlah maksimal 50"),
 });
 
@@ -18,11 +25,11 @@ export const orderPayloadSchema = z.object({
   orderType: z.enum(["pickup", "delivery"]),
   address: z.string().trim().max(300, "Alamat terlalu panjang").optional(),
   notes: z.string().trim().max(300, "Catatan terlalu panjang").optional(),
-  total: z.number().positive("Total tidak valid"),
-  items: z.array(orderItemSchema).min(1, "Keranjang masih kosong"),
+  items: z.array(orderItemSchema).min(1, "Keranjang masih kosong").max(50, "Terlalu banyak item"),
 });
 
 export type OrderPayload = z.infer<typeof orderPayloadSchema>;
+export type OrderSize = z.infer<typeof orderSizeSchema>;
 
 export function firstIssueMessage(error: z.ZodError) {
   return error.issues[0]?.message ?? "Data tidak valid";

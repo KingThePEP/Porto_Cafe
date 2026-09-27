@@ -84,11 +84,9 @@ export function CheckoutForm({ total }: { total: number }) {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         ...values,
-        total,
         items: items.map((item) => ({
-          productName: item.name,
-          sizeLabel: item.sizeLabel,
-          price: item.price,
+          productId: item.productId,
+          size: item.size,
           qty: item.qty,
         })),
       }),

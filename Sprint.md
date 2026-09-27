@@ -94,6 +94,9 @@
 - [x] Accessibility audit: skip link, `:focus-visible`, `prefers-reduced-motion`, landmark & heading, `lang="id"`.
 - [x] SEO final: JSON-LD `CafeOrCoffeeShop` + `Product`/`Article` + `BreadcrumbList`, canonical, Open Graph/Twitter lengkap, viewport.
 - [x] UI polish: animasi masuk CSS (`animate-fade-up`, `animate-fade-in`) tanpa dependency baru.
+- [x] Keamanan harga pesanan: client hanya kirim `productId`/`size`/`qty`; harga dan
+  total dihitung ulang di server oleh `public.create_order()` (SQL, SECURITY DEFINER).
+  Insert `orders`/`order_items` jadi satu transaksi, jadi tidak ada order yatim.
 - [ ] Setup custom domain `gatchucoffee.com` + SSL.
 
 **Deliverable**: Website live, dokumentasi lengkap, admin siap operasional.

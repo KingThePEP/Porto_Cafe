@@ -6,6 +6,7 @@ import { createPublicClient } from "@/lib/supabase/public";
 export { slugifyMenuItem };
 
 export type MenuEntry = MenuItem & {
+  productId: string | null;
   slug: string;
   groupId: string;
   groupName: string;
@@ -21,6 +22,7 @@ type CategoryRow = {
   slug: string | null;
   sort_order: number;
   products: {
+    id: string;
     name: string;
     slug: string | null;
     description: string | null;
@@ -42,6 +44,7 @@ function flatten(groups: MenuGroup[]): MenuEntry[] {
   return groups.flatMap((group) =>
     group.items.map((item) => ({
       ...item,
+      productId: item.productId ?? null,
       slug: slugifyMenuItem(item.name),
       groupId: group.id,
       groupName: group.name,
@@ -62,7 +65,7 @@ export const getMenuGroups = cache(async (): Promise<MenuGroup[]> => {
     const { data, error } = await client
       .from("categories")
       .select(
-        "id, name, slug, sort_order, products(name, slug, description, price, price_large, price_liter, note, is_available, is_signature, image_url)",
+        "id, name, slug, sort_order, products(id, name, slug, description, price, price_large, price_liter, note, is_available, is_signature, image_url)",
       )
       .order("sort_order", { ascending: true });
 
@@ -74,6 +77,7 @@ export const getMenuGroups = cache(async (): Promise<MenuGroup[]> => {
       const products = Array.isArray(category.products) ? category.products : [];
       const items: MenuItem[] = products.map((product) => ({
         name: product.name,
+        productId: product.id,
         regular: Number(product.price),
         large: product.price_large === null ? undefined : Number(product.price_large),
         liter: product.price_liter === null ? undefined : Number(product.price_liter),

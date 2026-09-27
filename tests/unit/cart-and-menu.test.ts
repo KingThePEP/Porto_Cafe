@@ -10,9 +10,11 @@ import { siteConfig } from "@/lib/site-config";
 function item(overrides: Partial<CartItem> = {}): CartItem {
   return {
     key: buildCartKey("kopi-susu-gatchu", "R"),
+    productId: "11111111-1111-4111-8111-111111111111",
     slug: "kopi-susu-gatchu",
     name: "Kopi Susu Gatchu",
     groupName: "Kopi Susu Gatchu",
+    size: "regular",
     sizeLabel: "R",
     sizeNote: "Ukuran R",
     price: 12000,

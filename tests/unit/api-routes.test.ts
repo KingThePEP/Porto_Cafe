@@ -14,8 +14,7 @@ const validOrder = {
   customerName: "Budi Santoso",
   customerPhone: "081234567890",
   orderType: "pickup",
-  total: 12000,
-  items: [{ productName: "Kopi Susu Gatchu", sizeLabel: "R", price: 12000, qty: 1 }],
+  items: [{ productId: "5668677a-8811-4cfb-88cc-6b930083de90", size: "regular", qty: 1 }],
 };
 
 describe("POST /api/orders", () => {

@@ -37,7 +37,6 @@ Isi `.env.local`:
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://xxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_...   # anon key / publishable key
-SUPABASE_SERVICE_ROLE_KEY=                         # opsional, jangan pernah di client
 NOTIFY_SECRET=                                     # opsional, untuk Edge Function
 NEXT_PUBLIC_SITE_URL=http://localhost:3000
 ```
@@ -60,13 +59,16 @@ psql "$CONN" -v ON_ERROR_STOP=1 -f supabase/seed.sql
 
 Atau lewat Supabase → **SQL Editor**, jalankan berurutan:
 
-1. `supabase/schema.sql` — tabel, index, trigger, RLS policy, storage bucket.
+1. `supabase/schema.sql` — tabel, index, trigger, RLS policy, storage bucket, dan
+   fungsi `create_order()` yang menghitung harga pesanan di server.
 2. `supabase/seed.sql` — brand profile, kategori, produk, artikel contoh.
 
 `supabase/setup.sql` adalah gabungan keduanya dalam satu file, berguna untuk di-paste
 langsung ke SQL Editor.
 
-Skrip bersifat idempotent (`if not exists` / `on conflict`), jadi aman dijalankan berulang.
+Skrip bersifat idempotent (`if not exists`, `on conflict`, dan `drop ... if exists`
+untuk trigger/policy), jadi aman dijalankan berulang kali. Zhiplah jua agar tidak ada
+`ERROR: policy ... already exists`.
 Untuk database lama, `schema.sql` sudah membawa kolom baru lewat `alter table ... add column if not exists`
 (`products.price_large`, `products.price_liter`, `products.note`).
 
@@ -173,7 +175,7 @@ src/
     validation/           # skema Zod untuk payload API
   middleware.ts           # proteksi rute /admin
 supabase/
-  schema.sql              # tabel, RLS, storage bucket
+  schema.sql              # tabel, RLS, storage bucket, create_order()
   seed.sql                # data awal
   setup.sql               # schema + seed dalam satu file
   functions/notify-admin/ # Edge Function notifikasi via Resend
@@ -212,5 +214,18 @@ Teks brand (alamat, jam buka, WhatsApp, sosial) ada di dua tempat yang harus dij
   (`product-images`, `post-covers`, `gallery`) dan otomatis dapat URL publik.
 - Harga varian disimpan terpisah: `price` (R), `price_large` (L), `price_liter` (1 Liter).
   Kosongkan L/1 Liter bila tidak tersedia.
-- Belum ada notifikasi email/WA otomatis untuk pesanan baru. Admin harus membuka `/admin/pesanan`
-  secara berkala, atau tambahkan Edge Function + Resend (backlog Sprint 4).
+- **Harga pesanan tidak pernah dipercaya dari browser.** Client hanya mengirim
+  `productId`, `size`, dan `qty`. Fungsi SQL `public.create_order()` menghitung
+  ulang harga dari tabel `products`, menulis `orders` + `order_items` dalam satu
+  transaksi, lalu mengembalikan `total` yang benar-benar tersimpan. Route
+  `/api/orders` tidak lagi bisa insert langsung, dan policy anon untuk
+  `orders`/`order_items` sengaja dihapus supaya tidak ada jalur lain.
+  Efek sampingnya: `order_items.product_id` selalu terisi, dan tidak pernah ada
+  order yatim kalau insert detail pesanan gagal.
+- Notifikasi email untuk pesanan baru sudah disiapkan lewat Edge Function
+  `supabase/functions/notify-admin/index.ts` (Resend), tapi masih dormant sampai
+  `NOTIFY_SECRET`, `RESEND_API_KEY`, dan `ADMIN_EMAIL` diisi lalu Edge Function
+  di-deploy. Sampai itu terjadi, admin harus membuka `/admin/pesanan` secara berkala.
+- Mengubah harga di dashboard langsung berlaku untuk pesanan baru. Pesanan yang
+  sudah tersimpan tidak ikut berubah, karena harga disimpan sebagai snapshot di
+  `order_items` saat pesanan dibuat.
