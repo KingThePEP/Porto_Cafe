@@ -1,0 +1,198 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 36 33% 96%;
+  --foreground: 18 19% 12%;
+  --muted: 24 17% 38%;
+  --border: 31 31% 84%;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background: #e7ad91;
+    color: #241c18;
+  }
+
+  :focus-visible {
+    @apply outline-none ring-2 ring-[#c9674b] ring-offset-2 ring-offset-[#fffaf4];
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+    }
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply sr-only;
+  }
+
+  .skip-link:focus {
+    @apply not-sr-only fixed left-4 top-4 z-[100] rounded-full bg-[#241c18] px-5 py-3 text-sm font-semibold text-white shadow-lg;
+  }
+}
+
+@keyframes gatchu-fade-up {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 18px, 0);
+  }
+
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes gatchu-fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@layer utilities {
+  .animate-fade-up {
+    animation: gatchu-fade-up 0.7s cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  .animate-fade-in {
+    animation: gatchu-fade-in 0.9s ease-out both;
+  }
+
+  .delay-1 {
+    animation-delay: 80ms;
+  }
+
+  .delay-2 {
+    animation-delay: 160ms;
+  }
+
+  .delay-3 {
+    animation-delay: 240ms;
+  }
+
+  .delay-4 {
+    animation-delay: 320ms;
+  }
+
+  .delay-5 {
+    animation-delay: 400ms;
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  .grain {
+    background-image: radial-gradient(rgba(36, 28, 24, 0.12) 0.65px, transparent 0.65px);
+    background-size: 7px 7px;
+  }
+
+  .soft-shadow {
+    box-shadow: 0 24px 70px rgba(71, 48, 35, 0.12);
+  }
+
+  .soft-shadow-sm {
+    box-shadow: 0 12px 32px rgba(71, 48, 35, 0.1);
+  }
+
+  .prose-gatchu {
+    @apply text-base leading-8 text-[#4d3d33];
+  }
+
+  .prose-gatchu > * + * {
+    @apply mt-5;
+  }
+
+  .prose-gatchu h2 {
+    @apply mt-10 text-2xl font-semibold tracking-[-0.04em] text-[#241c18];
+  }
+
+  .prose-gatchu h3 {
+    @apply mt-8 text-xl font-semibold tracking-[-0.03em] text-[#241c18];
+  }
+
+  .prose-gatchu a {
+    @apply font-semibold text-[#c9674b] underline underline-offset-4 hover:text-[#b9573e];
+  }
+
+  .prose-gatchu strong {
+    @apply font-bold text-[#241c18];
+  }
+
+  .prose-gatchu ul {
+    @apply list-disc space-y-2 pl-6;
+  }
+
+  .prose-gatchu ol {
+    @apply list-decimal space-y-2 pl-6;
+  }
+
+  .prose-gatchu blockquote {
+    @apply border-l-2 border-[#c9674b] bg-[#fdf6f0] py-3 pl-5 pr-4 italic text-[#6d5b50];
+  }
+
+  .prose-gatchu code {
+    @apply rounded-lg bg-[#f2e6da] px-1.5 py-0.5 font-mono text-sm text-[#8a4b32];
+  }
+
+  .prose-gatchu pre {
+    @apply overflow-x-auto rounded-2xl bg-[#241c18] p-5 font-mono text-sm text-[#f8f2ea];
+  }
+
+  .prose-gatchu pre code {
+    @apply bg-transparent p-0 text-inherit;
+  }
+
+  .prose-gatchu hr {
+    @apply border-[#eadfd2];
+  }
+
+  .prose-gatchu img {
+    @apply rounded-2xl border border-[#e2d5c7];
+  }
+
+  .prose-gatchu table {
+    @apply w-full border-collapse overflow-hidden text-left text-sm;
+  }
+
+  .prose-gatchu th,
+  .prose-gatchu td {
+    @apply border border-[#eadfd2] px-3 py-2;
+  }
+
+  .prose-gatchu th {
+    @apply bg-[#f8f2ea] font-bold text-[#241c18];
+  }
+}
