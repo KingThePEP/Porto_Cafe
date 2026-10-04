@@ -1,4 +1,9 @@
 import { expect, test } from "@playwright/test";
+import { testMarker } from "./support/test-data";
+
+// Dua test di bawah ini benar-benar menulis ke database Supabase. Baris yang
+// mereka buat dihapus lagi oleh `globalTeardown` setelah semua worker selesai.
+const marker = testMarker();
 
 test("keranjang kosong menampilkan ajakan untuk memilih menu", async ({ page }) => {
   await page.goto("/keranjang");
@@ -91,8 +96,8 @@ test("pesanan yang valid tersimpan, atau memberi jalan keluar lewat WhatsApp", a
   const waLink = page.getByRole("link", { name: /Lewati form, order via WhatsApp/i });
   await expect(waLink).toHaveAttribute("href", /wa\.me/);
 
-  await page.getByLabel("Nama").fill("Budi Santoso");
-  await page.getByLabel("Nomor WhatsApp").fill("081234567890");
+  await page.getByLabel("Nama").fill(marker.customerName);
+  await page.getByLabel("Nomor WhatsApp").fill(marker.customerPhone);
 
   const apiResponse = page.waitForResponse((response) => response.url().includes("/api/orders"));
   await page.getByRole("button", { name: /Kirim pesanan/i }).click();
@@ -122,8 +127,8 @@ test("pesanan yang valid tersimpan, atau memberi jalan keluar lewat WhatsApp", a
 test("pesan kontak terkirim, atau memberi jalan keluar lewat WhatsApp", async ({ page }) => {
   await page.goto("/kontak");
 
-  await page.getByLabel("Nama", { exact: true }).fill("Siti Aminah");
-  await page.getByLabel("WhatsApp", { exact: true }).fill("081234567890");
+  await page.getByLabel("Nama", { exact: true }).fill(marker.customerName);
+  await page.getByLabel("WhatsApp", { exact: true }).fill(marker.customerPhone);
   await page.getByLabel("Pesan", { exact: true }).fill("Mau pesan untuk acara kecil besok sore.");
 
   const apiResponse = page.waitForResponse((response) => response.url().includes("/api/messages"));
