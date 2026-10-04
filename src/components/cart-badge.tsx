@@ -19,13 +19,13 @@ export function CartBadge({ className }: { className?: string }) {
       href="/keranjang"
       aria-label={`Keranjang, ${count} item`}
       className={cn(
-        "relative flex h-10 w-10 items-center justify-center rounded-full border border-[#d8c9b8] bg-white/70 text-[#241c18] transition-colors hover:border-[#c9674b] hover:text-[#c9674b]",
+        "relative flex h-10 w-10 items-center justify-center rounded-full border border-[#d8c9b8] bg-white/70 text-[#241c18] transition-colors hover:border-[#a24931] hover:text-[#a24931]",
         className,
       )}
     >
       <ShoppingBag className="h-4 w-4" aria-hidden="true" />
       {count > 0 ? (
-        <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#c9674b] px-1 text-[10px] font-bold text-white">
+        <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-[#a24931] px-1 text-[10px] font-bold text-white">
           {count}
         </span>
       ) : null}

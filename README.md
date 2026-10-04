@@ -151,6 +151,57 @@ selama belum, pakai `onboarding@resend.dev` (hanya ke email akun Resend itu).
 - JSON-LD: `CafeOrCoffeeShop` (root layout), `Product` + `BreadcrumbList` (detail menu),
   `Article` + `BreadcrumbList` (detail artikel).
 - Canonical URL, Open Graph, Twitter Card, dan `viewport` terisi di setiap halaman.
+- Semua route publik di-render saat build dan di-revalidate tiap 5 menit
+  (`revalidate = 300`). Perubahan dari dashboard admin langsung di-invalidate via
+  `revalidatePath`. `/keranjang` tidak ikut di-cache karena menyimpan state client.
+
+## Audit Lighthouse
+
+Audit memakai Lighthouse 12 terhadap build produksi lokal (bukan `next dev`, agar
+chunk dan asset tidak stale):
+
+```bash
+npm run build
+npm run start -- --port 3100
+npx lighthouse@12 http://localhost:3100/ \
+  --only-categories=performance,accessibility,best-practices,seo \
+  --output=html --output-path=/tmp/lh-home.html
+```
+
+Tambahkan `--preset=desktop` untuk pengukuran desktop. Kalau Lighthouse gagal
+menemukan Chrome, arahkan ke binary Chromium Playwright:
+
+```bash
+export CHROME_PATH="$(npx playwright install --dry-run chromium \
+  | grep -m1 'Install location' | sed 's/.*:[[:space:]]*//')/chrome-linux64/chrome"
+```
+
+Hasil 9 route publik (lihat `Sprint.md` untuk tabel lengkap):
+
+| Kategori | Skor |
+| --- | --- |
+| Accessibility | 100 |
+| Best practices | 100 |
+| SEO | 100 (`/keranjang` 69 karena memang `noindex`) |
+| Performance | 99–100 desktop, 68–82 mobile throttled |
+| CLS | 0 (0.003 di `/keranjang`) |
+
+Angka mobile memakai simulasi Lantern (CPU 4x + jaringan lambat) dan sangat
+sensitif terhadap beban mesin, jadi selalu baca bersama angka desktop.
+
+## Palet warna
+
+Palet brand disimpan sebagai hex literal, bukan token CSS, supaya bisa dipakai di
+class utility Tailwind. Semua kombinasi teks/latar sudah diuji kontrasnya minimal
+4.5:1 (AA) untuk teks normal:
+
+| Token | Nilai | Rasio kontras |
+| --- | --- | --- |
+| Primary / terracotta | `#a24931` | 5.94:1 vs teks putih |
+| Primary hover | `#8f3d26` | 7.33:1 vs teks putih |
+| Dark card | `#492e25` | 12.35:1 vs teks putih |
+| Body text | `#241c18` | 16.13:1 vs `#fffaf4` |
+| Muted text | `#6d5b50` | 6.20:1 vs `#fffaf4`, 5.79:1 vs `#f8f2ea` |
 
 ## Struktur penting
 

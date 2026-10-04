@@ -85,7 +85,7 @@ export default async function BlogDetailPage({ params }: { params: PostParams })
       <article className="mx-auto max-w-3xl px-5 py-10 sm:px-8">
         <Link
           href="/blog"
-          className="inline-flex items-center text-xs font-bold uppercase tracking-[0.16em] text-[#a27b68] transition-colors hover:text-[#c9674b]"
+          className="inline-flex items-center text-xs font-bold uppercase tracking-[0.16em] text-[#7d5c4d] transition-colors hover:text-[#a24931]"
         >
           <ArrowLeft className="mr-2 h-3.5 w-3.5" aria-hidden="true" />
           Semua artikel
@@ -93,14 +93,14 @@ export default async function BlogDetailPage({ params }: { params: PostParams })
 
         <header className="mt-6">
           {post.tags.length > 0 ? (
-            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#c9674b]">
+            <p className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#a24931]">
               {post.tags.join(" · ")}
             </p>
           ) : null}
           <h1 className="animate-fade-up delay-1 mt-4 text-balance text-3xl font-semibold leading-tight tracking-[-0.05em] text-[#241c18] sm:text-5xl">
             {post.title}
           </h1>
-          <p className="mt-4 text-xs uppercase tracking-[0.14em] text-[#a27b68]">
+          <p className="mt-4 text-xs uppercase tracking-[0.14em] text-[#7d5c4d]">
             {formatDate(post.createdAt)} · {siteConfig.name}
           </p>
         </header>
@@ -113,7 +113,7 @@ export default async function BlogDetailPage({ params }: { params: PostParams })
         ) : null}
 
         {post.excerpt ? (
-          <p className="mt-8 border-l-2 border-[#c9674b] pl-5 text-lg leading-8 text-[#6d5b50]">
+          <p className="mt-8 border-l-2 border-[#a24931] pl-5 text-lg leading-8 text-[#6d5b50]">
             {post.excerpt}
           </p>
         ) : null}

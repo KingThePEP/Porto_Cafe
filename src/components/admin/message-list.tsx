@@ -18,7 +18,7 @@ export function MessageList({ messages }: { messages: AdminMessage[] }) {
 
   if (messages.length === 0) {
     return (
-      <p className="rounded-3xl border border-dashed border-[#d8c9b8] bg-[#fdfaf6] px-6 py-10 text-center text-sm text-[#a27b68]">
+      <p className="rounded-3xl border border-dashed border-[#d8c9b8] bg-[#fdfaf6] px-6 py-10 text-center text-sm text-[#7d5c4d]">
         Belum ada pesan masuk.
       </p>
     );
@@ -37,7 +37,7 @@ export function MessageList({ messages }: { messages: AdminMessage[] }) {
         return (
           <article
             key={message.id}
-            className={cn(adminCard, !message.isRead && "border-[#c9674b] bg-[#fffaf7]")}
+            className={cn(adminCard, !message.isRead && "border-[#a24931] bg-[#fffaf7]")}
           >
             <div className="flex flex-wrap items-center gap-3">
               <h2 className="text-lg font-black tracking-[-0.02em] text-[#241c18]">{message.name}</h2>
@@ -50,13 +50,13 @@ export function MessageList({ messages }: { messages: AdminMessage[] }) {
                 {meta.label}
               </span>
               {!message.isRead ? (
-                <span className="rounded-full bg-[#c9674b] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-white">
+                <span className="rounded-full bg-[#a24931] px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] text-white">
                   Baru
                 </span>
               ) : null}
             </div>
 
-            <p className="mt-1 text-xs text-[#a27b68]">
+            <p className="mt-1 text-xs text-[#7d5c4d]">
               {formatDateTime(message.createdAt)}
               {message.subject ? ` · ${message.subject}` : ""}
             </p>
@@ -69,7 +69,7 @@ export function MessageList({ messages }: { messages: AdminMessage[] }) {
               {message.email ? (
                 <a
                   href={`mailto:${message.email}`}
-                  className="inline-flex items-center text-xs font-semibold text-[#c9674b] hover:underline"
+                  className="inline-flex items-center text-xs font-semibold text-[#a24931] hover:underline"
                 >
                   <Mail className="mr-1.5 h-3.5 w-3.5" aria-hidden="true" />
                   {message.email}
@@ -80,7 +80,7 @@ export function MessageList({ messages }: { messages: AdminMessage[] }) {
                   href={waLink ?? `tel:${message.phone}`}
                   target="_blank"
                   rel="noreferrer"
-                  className="inline-flex items-center text-xs font-semibold text-[#c9674b] hover:underline"
+                  className="inline-flex items-center text-xs font-semibold text-[#a24931] hover:underline"
                 >
                   <Phone className="mr-1.5 h-3.5 w-3.5" aria-hidden="true" />
                   {message.phone}

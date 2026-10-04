@@ -32,7 +32,7 @@ export default async function AdminOrdersPage({
             "rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] transition-colors",
             !status
               ? "border-[#241c18] bg-[#241c18] text-white"
-              : "border-[#d8c9b8] bg-white text-[#6d5b50] hover:border-[#c9674b]",
+              : "border-[#d8c9b8] bg-white text-[#6d5b50] hover:border-[#a24931]",
           )}
         >
           Semua
@@ -45,7 +45,7 @@ export default async function AdminOrdersPage({
               "rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] transition-colors",
               status === value
                 ? "border-[#241c18] bg-[#241c18] text-white"
-                : "border-[#d8c9b8] bg-white text-[#6d5b50] hover:border-[#c9674b]",
+                : "border-[#d8c9b8] bg-white text-[#6d5b50] hover:border-[#a24931]",
             )}
           >
             {orderStatusMeta[value].label}

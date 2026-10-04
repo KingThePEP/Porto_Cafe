@@ -41,7 +41,7 @@ function PriceCell({
         href={createOrderLink(itemName, size)}
         target="_blank"
         rel="noreferrer"
-        className="text-right text-sm font-semibold text-[#c9674b] transition-colors hover:underline"
+        className="text-right text-sm font-semibold text-[#a24931] transition-colors hover:underline"
       >
         {formatPrice(value)}
       </a>
@@ -67,7 +67,7 @@ function MenuRow({ item, group }: { item: MenuItem; group: MenuGroup }) {
       <div className="grid grid-cols-[1fr_auto_auto_auto] items-start gap-x-4">
         <div>
           <p className="text-sm font-semibold text-[#30251f]">{item.name}</p>
-          {item.note ? <p className="mt-1 text-xs text-[#a27b68]">{item.note}</p> : null}
+          {item.note ? <p className="mt-1 text-xs text-[#7d5c4d]">{item.note}</p> : null}
         </div>
         <PriceCell
           value={item.regular}
@@ -107,15 +107,25 @@ function MenuRow({ item, group }: { item: MenuItem; group: MenuGroup }) {
   );
 }
 
-export function MenuPriceTable({ group, className }: { group: MenuGroup; className?: string }) {
+export function MenuPriceTable({
+  group,
+  className,
+  headingLevel: Heading = "h3",
+}: {
+  group: MenuGroup;
+  className?: string;
+  // Judul kategori adalah h3 di beranda (berada di dalam section dengan h2),
+  // tapi h2 di halaman /menu karena h1 halaman langsung diikuti daftar kategori.
+  headingLevel?: "h2" | "h3";
+}) {
   return (
     <article className={cn("rounded-[2rem] border border-[#e2d5c7] bg-[#fffaf4] p-6 sm:p-8", className)}>
       <div className="flex flex-wrap items-baseline justify-between gap-3">
-        <h3 className="text-2xl font-semibold tracking-[-0.04em] text-[#30251f]">{group.name}</h3>
-        <p className="w-full text-sm leading-6 text-[#806e61] sm:w-auto sm:text-right">{group.description}</p>
+        <Heading className="text-2xl font-semibold tracking-[-0.04em] text-[#30251f]">{group.name}</Heading>
+        <p className="w-full text-sm leading-6 text-[#706155] sm:w-auto sm:text-right">{group.description}</p>
       </div>
 
-      <div className="mt-6 grid grid-cols-[1fr_auto_auto_auto] items-center gap-x-4 border-b border-[#e2d5c7] pb-3 text-[10px] font-bold uppercase tracking-[0.16em] text-[#a27b68]">
+      <div className="mt-6 grid grid-cols-[1fr_auto_auto_auto] items-center gap-x-4 border-b border-[#e2d5c7] pb-3 text-[10px] font-bold uppercase tracking-[0.16em] text-[#7d5c4d]">
         <span>Menu</span>
         <span className="w-16 text-right sm:w-20">{sizeLabels.regular}</span>
         <span className="w-16 text-right sm:w-20">{sizeLabels.large}</span>

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
   },
 };
 
-export const dynamic = "force-dynamic";
+export const revalidate = 300;
 
 export default async function GalleryPage() {
   const items = await getPublicGallery();
@@ -22,12 +22,12 @@ export default async function GalleryPage() {
     <JsonLd data={buildBreadcrumbJsonLd([{"name": "Beranda", "path": "/"}, {"name": "Galeri", "path": "/galeri"}])} />
     <main className="pt-32 sm:pt-36">
       <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10">
-        <p className="animate-fade-up flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-[#a27b68]">
-          <span className="h-px w-8 bg-[#c9674b]" />
+        <p className="animate-fade-up flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-[#7d5c4d]">
+          <span className="h-px w-8 bg-[#a24931]" />
           Galeri
         </p>
         <h1 className="animate-fade-up delay-1 mt-5 max-w-3xl text-balance text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#241c18] sm:text-6xl">
-          Suasana <span className="text-[#c9674b]">Gatchu.</span>
+          Suasana <span className="text-[#a24931]">Gatchu.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-base leading-8 text-[#6d5b50]">
           Sudut bar dan suasana kedai di {siteConfig.address.neighborhood}. Foto ditambahkan dari
@@ -37,7 +37,7 @@ export default async function GalleryPage() {
 
       <section className="mx-auto max-w-7xl px-5 pb-20 sm:px-8 lg:px-10">
         {items.length === 0 ? (
-          <p className="rounded-[2rem] border border-dashed border-[#d8c9b8] bg-[#fdfaf6] px-6 py-16 text-center text-sm text-[#a27b68]">
+          <p className="rounded-[2rem] border border-dashed border-[#d8c9b8] bg-[#fdfaf6] px-6 py-16 text-center text-sm text-[#7d5c4d]">
             Belum ada foto galeri. Admin bisa menambahkan lewat dashboard.
           </p>
         ) : (

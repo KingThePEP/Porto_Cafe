@@ -63,12 +63,12 @@ export function CategoryManager({ categories }: { categories: AdminCategory[] })
 
       <ul className="mt-5 divide-y divide-[#f0e6db] rounded-2xl border border-[#f0e6db]">
         {categories.length === 0 ? (
-          <li className="px-4 py-6 text-center text-sm text-[#a27b68]">Belum ada kategori.</li>
+          <li className="px-4 py-6 text-center text-sm text-[#7d5c4d]">Belum ada kategori.</li>
         ) : (
           categories.map((category) => (
             <li key={category.id} className="flex flex-wrap items-center gap-3 px-4 py-3">
               <span className="font-semibold text-[#30251f]">{category.name}</span>
-              <span className="text-xs text-[#a27b68]">
+              <span className="text-xs text-[#7d5c4d]">
                 /{category.slug} · {category.productCount} produk · urutan {category.sortOrder}
               </span>
               <div className="ml-auto flex gap-2">

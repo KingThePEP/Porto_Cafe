@@ -88,8 +88,8 @@ export function LoginForm({
         )}
       </button>
 
-      <p className="text-center text-xs text-[#a27b68]">
-        <Link href="/" className="underline underline-offset-4 hover:text-[#c9674b]">
+      <p className="text-center text-xs text-[#7d5c4d]">
+        <Link href="/" className="underline underline-offset-4 hover:text-[#a24931]">
           Kembali ke situs
         </Link>
       </p>

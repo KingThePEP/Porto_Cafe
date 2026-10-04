@@ -42,7 +42,7 @@ export function AdminSidebar({ email }: { email: string }) {
           <span className="block text-sm font-black uppercase tracking-[0.18em] text-[#241c18]">
             {siteConfig.shortName}
           </span>
-          <span className="block text-xs text-[#a27b68]">Admin dashboard</span>
+          <span className="block text-xs text-[#7d5c4d]">Admin dashboard</span>
         </span>
       </Link>
 
@@ -72,7 +72,7 @@ export function AdminSidebar({ email }: { email: string }) {
       </nav>
 
       <div className="flex flex-col gap-2 border-t border-[#e3d6c7] pt-4">
-        <p className="truncate px-4 text-xs text-[#a27b68]">{email}</p>
+        <p className="truncate px-4 text-xs text-[#7d5c4d]">{email}</p>
         <a
           href="/"
           target="_blank"

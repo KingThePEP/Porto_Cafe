@@ -22,7 +22,7 @@ export function OrdersTable({ orders }: { orders: AdminOrder[] }) {
       <ActionFeedback feedback={feedback} />
 
       {orders.length === 0 ? (
-        <p className="rounded-3xl border border-dashed border-[#d8c9b8] bg-[#fdfaf6] px-6 py-10 text-center text-sm text-[#a27b68]">
+        <p className="rounded-3xl border border-dashed border-[#d8c9b8] bg-[#fdfaf6] px-6 py-10 text-center text-sm text-[#7d5c4d]">
           Belum ada pesanan pada filter ini.
         </p>
       ) : (
@@ -42,28 +42,28 @@ export function OrdersTable({ orders }: { orders: AdminOrder[] }) {
                     </h2>
                     <OrderStatusBadge status={order.status} />
                   </div>
-                  <p className="mt-1 text-xs text-[#a27b68]">
+                  <p className="mt-1 text-xs text-[#7d5c4d]">
                     {formatDateTime(order.createdAt)} ·{" "}
                     {order.orderType === "pickup" ? "Takeaway" : "Delivery"}
                   </p>
                 </div>
 
                 <div className="text-right">
-                  <p className="text-xl font-black tracking-[-0.04em] text-[#c9674b]">
+                  <p className="text-xl font-black tracking-[-0.04em] text-[#a24931]">
                     {formatPrice(order.total)}
                   </p>
-                  <p className="text-xs text-[#a27b68]">{order.items.length} item</p>
+                  <p className="text-xs text-[#7d5c4d]">{order.items.length} item</p>
                 </div>
               </div>
 
               <div className="mt-4 grid gap-4 sm:grid-cols-2">
                 <div className="rounded-2xl bg-[#fdfaf6] p-4">
-                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#a27b68]">Kontak</p>
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#7d5c4d]">Kontak</p>
                   <a
                     href={waLink}
                     target="_blank"
                     rel="noreferrer"
-                    className="mt-1 block text-sm font-semibold text-[#30251f] hover:text-[#c9674b]"
+                    className="mt-1 block text-sm font-semibold text-[#30251f] hover:text-[#a24931]"
                   >
                     {order.customerPhone}
                   </a>
@@ -73,7 +73,7 @@ export function OrdersTable({ orders }: { orders: AdminOrder[] }) {
                 </div>
 
                 <div className="rounded-2xl bg-[#fdfaf6] p-4">
-                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#a27b68]">
+                  <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#7d5c4d]">
                     Catatan pelanggan
                   </p>
                   <p className="mt-1 text-sm text-[#6d5b50]">{order.notes?.trim() || "-"}</p>
@@ -84,7 +84,7 @@ export function OrdersTable({ orders }: { orders: AdminOrder[] }) {
                 type="button"
                 onClick={() => setExpanded(isOpen ? null : order.id)}
                 aria-expanded={isOpen}
-                className="mt-4 inline-flex items-center text-xs font-bold uppercase tracking-[0.12em] text-[#c9674b] hover:underline"
+                className="mt-4 inline-flex items-center text-xs font-bold uppercase tracking-[0.12em] text-[#a24931] hover:underline"
               >
                 {isOpen ? "Sembunyikan" : "Lihat"} detail item
                 <ChevronDown className={`ml-1 h-3.5 w-3.5 transition-transform ${isOpen ? "rotate-180" : ""}`} aria-hidden="true" />
@@ -95,7 +95,7 @@ export function OrdersTable({ orders }: { orders: AdminOrder[] }) {
                   {order.items.map((item) => (
                     <li key={item.id} className="flex items-center justify-between gap-4 px-4 py-3 text-sm">
                       <span className="text-[#30251f]">
-                        {item.productName} <span className="text-[#a27b68]">x{item.qty}</span>
+                        {item.productName} <span className="text-[#7d5c4d]">x{item.qty}</span>
                       </span>
                       <span className="whitespace-nowrap font-semibold text-[#4d3d33]">
                         {formatPrice(item.subtotal)}
@@ -106,7 +106,7 @@ export function OrdersTable({ orders }: { orders: AdminOrder[] }) {
               ) : null}
 
               <div className="mt-5 flex flex-wrap items-center gap-3 border-t border-[#f0e6db] pt-4">
-                <label htmlFor={`status-${order.id}`} className="text-xs font-bold uppercase tracking-[0.14em] text-[#a27b68]">
+                <label htmlFor={`status-${order.id}`} className="text-xs font-bold uppercase tracking-[0.14em] text-[#7d5c4d]">
                   Ubah status
                 </label>
                 <select
@@ -117,7 +117,7 @@ export function OrdersTable({ orders }: { orders: AdminOrder[] }) {
                     const status = event.target.value;
                     void run(() => updateOrderStatusAction({ orderId: order.id, status }));
                   }}
-                  className="rounded-full border border-[#d8c9b8] bg-white px-4 py-2 text-xs font-semibold text-[#30251f] outline-none focus:border-[#c9674b] disabled:opacity-60"
+                  className="rounded-full border border-[#d8c9b8] bg-white px-4 py-2 text-xs font-semibold text-[#30251f] outline-none focus:border-[#a24931] disabled:opacity-60"
                 >
                   {Object.entries(orderStatusMeta).map(([value, meta]) => (
                     <option key={value} value={value}>
@@ -127,7 +127,7 @@ export function OrdersTable({ orders }: { orders: AdminOrder[] }) {
                 </select>
 
                 {isPending ? (
-                  <Loader2 className="h-4 w-4 animate-spin text-[#a27b68]" aria-hidden="true" />
+                  <Loader2 className="h-4 w-4 animate-spin text-[#7d5c4d]" aria-hidden="true" />
                 ) : null}
                 <button
                   type="button"

@@ -72,7 +72,7 @@ export function GalleryManager({ items }: { items: AdminGalleryItem[] }) {
         <h2 className="text-lg font-black tracking-[-0.02em] text-[#241c18]">Foto tersimpan</h2>
 
         {items.length === 0 ? (
-          <p className="mt-4 rounded-2xl border border-dashed border-[#d8c9b8] bg-[#fdfaf6] px-6 py-8 text-center text-sm text-[#a27b68]">
+          <p className="mt-4 rounded-2xl border border-dashed border-[#d8c9b8] bg-[#fdfaf6] px-6 py-8 text-center text-sm text-[#7d5c4d]">
             Belum ada foto galeri.
           </p>
         ) : (
@@ -89,7 +89,7 @@ export function GalleryManager({ items }: { items: AdminGalleryItem[] }) {
                   <p className="truncate text-sm font-semibold text-[#30251f]">
                     {item.caption ?? "Tanpa keterangan"}
                   </p>
-                  <p className="mt-1 text-xs text-[#a27b68]">{formatDateTime(item.createdAt)}</p>
+                  <p className="mt-1 text-xs text-[#7d5c4d]">{formatDateTime(item.createdAt)}</p>
                   <button
                     type="button"
                     disabled={isPending}

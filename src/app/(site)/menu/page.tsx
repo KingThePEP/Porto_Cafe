@@ -25,12 +25,12 @@ export default async function MenuPage() {
     <JsonLd data={buildBreadcrumbJsonLd([{"name": "Beranda", "path": "/"}, {"name": "Menu", "path": "/menu"}])} />
     <main className="pt-32 sm:pt-36">
       <section className="mx-auto max-w-7xl px-5 pb-12 pt-8 sm:px-8 lg:px-10">
-        <p className="animate-fade-up flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-[#a27b68]">
-          <span className="h-px w-8 bg-[#c9674b]" />
+        <p className="animate-fade-up flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-[#7d5c4d]">
+          <span className="h-px w-8 bg-[#a24931]" />
           Menu Gatchu
         </p>
         <h1 className="animate-fade-up delay-1 mt-5 max-w-3xl text-balance text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#241c18] sm:text-6xl">
-          Daftar menu dan <span className="text-[#c9674b]">harga</span> terbaru.
+          Daftar menu dan <span className="text-[#a24931]">harga</span> terbaru.
         </h1>
         <p className="mt-6 max-w-2xl text-base leading-8 text-[#6d5b50]">
           R = Reguler, L = Large, dan 1 Liter untuk dibawa pulang. Harga bisa berubah sewaktu-waktu, jadi
@@ -64,9 +64,9 @@ export default async function MenuPage() {
         <MenuBrowser groups={groups} />
 
         <div className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-[2rem] border border-[#e2d5c7] bg-white p-6 sm:p-8">
-          <p className="text-sm text-[#806e61]">
+          <p className="text-sm text-[#706155]">
             Ingin tahu menu harian atau promo terbaru?             Lihat{" "}
-            <Link href="/about" className="font-semibold text-[#c9674b] hover:underline">
+            <Link href="/about" className="font-semibold text-[#a24931] hover:underline">
               halaman tentang kami
             </Link>
             .
@@ -75,7 +75,7 @@ export default async function MenuPage() {
             href={siteConfig.social.instagram}
             target="_blank"
             rel="noreferrer"
-            className="text-sm font-semibold text-[#c9674b] hover:underline"
+            className="text-sm font-semibold text-[#a24931] hover:underline"
           >
             {siteConfig.social.instagramHandle}
           </a>

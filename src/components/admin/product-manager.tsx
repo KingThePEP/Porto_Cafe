@@ -132,7 +132,7 @@ export function ProductManager({
 
       <ul className="mt-5 divide-y divide-[#f0e6db] rounded-2xl border border-[#f0e6db]">
         {products.length === 0 ? (
-          <li className="px-4 py-6 text-center text-sm text-[#a27b68]">
+          <li className="px-4 py-6 text-center text-sm text-[#7d5c4d]">
             Belum ada produk. Tambahkan lewat form di bawah.
           </li>
         ) : (
@@ -150,12 +150,12 @@ export function ProductManager({
                 <p className="truncate font-semibold text-[#30251f]">
                   {product.name}
                   {product.isSignature ? (
-                    <span className="ml-2 rounded-full bg-[#fdeee9] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-[#c9674b]">
+                    <span className="ml-2 rounded-full bg-[#fdeee9] px-2 py-0.5 text-[10px] font-bold uppercase tracking-[0.1em] text-[#a24931]">
                       Signature
                     </span>
                   ) : null}
                 </p>
-                <p className="text-xs text-[#a27b68]">
+                <p className="text-xs text-[#7d5c4d]">
                   {formatPrice(product.price)}
                   {product.priceLarge ? ` · L ${formatPrice(product.priceLarge)}` : ""}
                   {product.priceLiter ? ` · 1L ${formatPrice(product.priceLiter)}` : ""}
@@ -368,7 +368,7 @@ export function ProductManager({
               type="checkbox"
               checked={draft.isAvailable}
               onChange={(event) => setDraft({ ...draft, isAvailable: event.target.checked })}
-              className="h-4 w-4 rounded border-[#d8c9b8] text-[#c9674b] focus:ring-[#c9674b]"
+              className="h-4 w-4 rounded border-[#d8c9b8] text-[#a24931] focus:ring-[#a24931]"
             />
             Tampilkan di halaman publik
           </label>
@@ -377,7 +377,7 @@ export function ProductManager({
               type="checkbox"
               checked={draft.isSignature}
               onChange={(event) => setDraft({ ...draft, isSignature: event.target.checked })}
-              className="h-4 w-4 rounded border-[#d8c9b8] text-[#c9674b] focus:ring-[#c9674b]"
+              className="h-4 w-4 rounded border-[#d8c9b8] text-[#a24931] focus:ring-[#a24931]"
             />
             Tandai sebagai menu signature
           </label>

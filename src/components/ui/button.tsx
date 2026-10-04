@@ -3,14 +3,14 @@ import { cva, type VariantProps } from "class-variance-authority";
 import { cn } from "@/lib/utils";
 
 const buttonVariants = cva(
-  "inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#c9674b] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex items-center justify-center whitespace-nowrap rounded-full text-sm font-semibold transition-all duration-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#a24931] focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
   {
     variants: {
       variant: {
         primary:
-          "bg-[#c9674b] text-white shadow-[0_12px_28px_rgba(201,103,75,0.22)] hover:-translate-y-0.5 hover:bg-[#b9573e]",
+          "bg-[#a24931] text-white shadow-[0_12px_28px_rgba(201,103,75,0.22)] hover:-translate-y-0.5 hover:bg-[#8f3d26]",
         secondary:
-          "border border-[#d8c9b8] bg-white/70 text-[#30251f] hover:-translate-y-0.5 hover:border-[#c9674b] hover:bg-white",
+          "border border-[#d8c9b8] bg-white/70 text-[#30251f] hover:-translate-y-0.5 hover:border-[#a24931] hover:bg-white",
         ghost: "text-[#6d5b50] hover:bg-[#f0e6db] hover:text-[#30251f]",
         dark: "bg-[#241c18] text-white hover:-translate-y-0.5 hover:bg-[#3a2b23]",
       },

@@ -22,7 +22,7 @@ export default function OrderSuccessPage() {
           <Check className="h-7 w-7" aria-hidden="true" />
         </span>
         <h1 className="mt-6 text-balance text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#241c18] sm:text-5xl">
-          Pesanan sudah <span className="text-[#c9674b]">dikirim.</span>
+          Pesanan sudah <span className="text-[#a24931]">dikirim.</span>
         </h1>
         <p className="mt-5 max-w-xl text-base leading-8 text-[#6d5b50]">
           Terima kasih. Pesanan tercatat dan akan kami cek. Untuk konfirmasi fastest, kirim ringkasan pesanan ke
@@ -51,14 +51,14 @@ export default function OrderSuccessPage() {
         </div>
 
         <div className="mt-10 rounded-[2rem] border border-[#e2d5c7] bg-[#fffaf4] p-6 sm:p-8">
-          <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-[#a27b68]">Pengambilan</h2>
+          <h2 className="text-sm font-bold uppercase tracking-[0.2em] text-[#7d5c4d]">Pengambilan</h2>
           <p className="mt-3 text-sm leading-7 text-[#4d3d33]">{siteConfig.address.full}</p>
           <p className="mt-3 text-sm leading-7 text-[#4d3d33]">{siteConfig.hours.label}</p>
         </div>
 
         <Link
           href="/menu"
-          className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#6d5b50] transition-colors hover:text-[#c9674b]"
+          className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-[#6d5b50] transition-colors hover:text-[#a24931]"
         >
           Kembali ke menu
           <ArrowRight className="h-4 w-4" aria-hidden="true" />

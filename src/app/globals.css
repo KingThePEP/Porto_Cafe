@@ -29,7 +29,7 @@
   }
 
   :focus-visible {
-    @apply outline-none ring-2 ring-[#c9674b] ring-offset-2 ring-offset-[#fffaf4];
+    @apply outline-none ring-2 ring-[#a24931] ring-offset-2 ring-offset-[#fffaf4];
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -144,7 +144,7 @@
   }
 
   .prose-gatchu a {
-    @apply font-semibold text-[#c9674b] underline underline-offset-4 hover:text-[#b9573e];
+    @apply font-semibold text-[#a24931] underline underline-offset-4 hover:text-[#8f3d26];
   }
 
   .prose-gatchu strong {
@@ -160,7 +160,7 @@
   }
 
   .prose-gatchu blockquote {
-    @apply border-l-2 border-[#c9674b] bg-[#fdf6f0] py-3 pl-5 pr-4 italic text-[#6d5b50];
+    @apply border-l-2 border-[#a24931] bg-[#fdf6f0] py-3 pl-5 pr-4 italic text-[#6d5b50];
   }
 
   .prose-gatchu code {

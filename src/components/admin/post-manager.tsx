@@ -102,7 +102,7 @@ export function PostManager({ posts }: { posts: AdminPost[] }) {
 
         <ul className="mt-5 divide-y divide-[#f0e6db] rounded-2xl border border-[#f0e6db]">
           {posts.length === 0 ? (
-            <li className="px-4 py-6 text-center text-sm text-[#a27b68]">
+            <li className="px-4 py-6 text-center text-sm text-[#7d5c4d]">
               Belum ada artikel. Tulis artikel pertama lewat form di bawah.
             </li>
           ) : (
@@ -110,7 +110,7 @@ export function PostManager({ posts }: { posts: AdminPost[] }) {
               <li key={post.id} className="flex flex-wrap items-center gap-3 px-4 py-3">
                 <div className="min-w-0">
                   <p className="truncate font-semibold text-[#30251f]">{post.title}</p>
-                  <p className="text-xs text-[#a27b68]">
+                  <p className="text-xs text-[#7d5c4d]">
                     /blog/{post.slug} · {formatDateTime(post.createdAt)}
                     {post.tags.length > 0 ? ` · ${post.tags.join(", ")}` : ""}
                   </p>
@@ -120,7 +120,7 @@ export function PostManager({ posts }: { posts: AdminPost[] }) {
                   className={`rounded-full border px-3 py-1 text-[10px] font-bold uppercase tracking-[0.1em] ${
                     post.published
                       ? "border-[#b7d7c1] bg-[#eef7f0] text-[#2f6b41]"
-                      : "border-[#f0d5a6] bg-[#fdf1dd] text-[#8a5b12]"
+                      : "border-[#f0d5a6] bg-[#fdf1dd] text-[#895a12]"
                   }`}
                 >
                   {post.published ? "Published" : "Draft"}
@@ -277,7 +277,7 @@ export function PostManager({ posts }: { posts: AdminPost[] }) {
                   type="checkbox"
                   checked={draft.published}
                   onChange={(event) => setDraft({ ...draft, published: event.target.checked })}
-                  className="h-4 w-4 rounded border-[#d8c9b8] text-[#c9674b] focus:ring-[#c9674b]"
+                  className="h-4 w-4 rounded border-[#d8c9b8] text-[#a24931] focus:ring-[#a24931]"
                 />
                 Publikasikan langsung
               </label>

@@ -29,7 +29,7 @@ export function SiteFooter() {
             href={siteConfig.whatsapp.orderLink}
             target="_blank"
             rel="noreferrer"
-            className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#c9674b] transition-colors hover:text-[#b9573e]"
+            className="mt-4 inline-flex items-center gap-2 text-sm font-semibold text-[#a24931] transition-colors hover:text-[#8f3d26]"
           >
             <MessageCircle className="h-4 w-4" aria-hidden="true" />
             WhatsApp {siteConfig.whatsapp.display}
@@ -66,7 +66,7 @@ export function SiteFooter() {
                 href={siteConfig.social.instagram}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-[#d8c9b8] bg-[#fffaf4] px-4 py-2 text-sm font-semibold text-[#241c18] transition-colors hover:border-[#c9674b] hover:text-[#c9674b]"
+                className="inline-flex items-center gap-2 rounded-full border border-[#d8c9b8] bg-[#fffaf4] px-4 py-2 text-sm font-semibold text-[#241c18] transition-colors hover:border-[#a24931] hover:text-[#a24931]"
               >
                 <AtSign className="h-4 w-4" aria-hidden="true" />
                 {siteConfig.social.instagramHandle}
@@ -75,7 +75,7 @@ export function SiteFooter() {
                 href={siteConfig.social.tiktok}
                 target="_blank"
                 rel="noreferrer"
-                className="inline-flex items-center gap-2 rounded-full border border-[#d8c9b8] bg-[#fffaf4] px-4 py-2 text-sm font-semibold text-[#241c18] transition-colors hover:border-[#c9674b] hover:text-[#c9674b]"
+                className="inline-flex items-center gap-2 rounded-full border border-[#d8c9b8] bg-[#fffaf4] px-4 py-2 text-sm font-semibold text-[#241c18] transition-colors hover:border-[#a24931] hover:text-[#a24931]"
               >
                 <Music2 className="h-4 w-4" aria-hidden="true" />
                 {siteConfig.social.tiktokHandle}
@@ -94,25 +94,25 @@ export function SiteFooter() {
           </a>
         </div>
       </div>
-      <div className="border-t border-[#eadfd2] py-6 text-center text-xs text-[#8a7466]">
+      <div className="border-t border-[#eadfd2] py-6 text-center text-xs text-[#736055]">
         <div className="mx-auto flex max-w-7xl flex-col items-center gap-3 px-5 sm:px-8 lg:flex-row lg:justify-between lg:px-10">
           <p>
             © {new Date().getFullYear()} {siteConfig.name}. Diracik di {siteConfig.address.city.split(",")[0]}.
           </p>
           <nav className="flex flex-wrap justify-center gap-x-5 gap-y-2" aria-label="Navigasi footer">
-            <Link href="/menu" className="hover:text-[#c9674b]">
+            <Link href="/menu" className="hover:text-[#a24931]">
               Menu
             </Link>
-            <Link href="/blog" className="hover:text-[#c9674b]">
+            <Link href="/blog" className="hover:text-[#a24931]">
               Journal
             </Link>
-            <Link href="/galeri" className="hover:text-[#c9674b]">
+            <Link href="/galeri" className="hover:text-[#a24931]">
               Galeri
             </Link>
-            <Link href="/kontak" className="hover:text-[#c9674b]">
+            <Link href="/kontak" className="hover:text-[#a24931]">
               Kontak
             </Link>
-            <Link href="/admin/login" className="hover:text-[#c9674b]">
+            <Link href="/admin/login" className="hover:text-[#a24931]">
               Admin
             </Link>
           </nav>

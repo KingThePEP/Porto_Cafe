@@ -22,12 +22,12 @@ export default function AboutPage() {
     <JsonLd data={buildBreadcrumbJsonLd([{"name": "Beranda", "path": "/"}, {"name": "About", "path": "/about"}])} />
     <main className="pt-32 sm:pt-36">
       <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10">
-        <p className="animate-fade-up flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-[#a27b68]">
-          <span className="h-px w-8 bg-[#c9674b]" />
+        <p className="animate-fade-up flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-[#7d5c4d]">
+          <span className="h-px w-8 bg-[#a24931]" />
           Tentang Gatchu
         </p>
         <h1 className="animate-fade-up delay-1 mt-5 max-w-3xl text-balance text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#241c18] sm:text-6xl">
-          Kedai kopi lokal di <span className="text-[#c9674b]">Sawahan Timur.</span>
+          Kedai kopi lokal di <span className="text-[#a24931]">Sawahan Timur.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-base leading-8 text-[#6d5b50]">
           {siteConfig.name} berada di {siteConfig.address.neighborhood}, {siteConfig.address.district.replace("Kec. ", "")}{" "}
@@ -38,25 +38,25 @@ export default function AboutPage() {
       <section className="bg-[#e6eadc]">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-20 sm:px-8 lg:grid-cols-3 lg:px-10">
           <div className="rounded-[2rem] bg-white/70 p-6">
-            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f2e6da] text-[#c9674b]">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f2e6da] text-[#a24931]">
               <MapPin className="h-5 w-5" aria-hidden="true" />
             </span>
-            <h2 className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-[#a27b68]">Alamat</h2>
+            <h2 className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-[#7d5c4d]">Alamat</h2>
             <p className="mt-3 text-sm leading-7 text-[#4d3d33]">{siteConfig.address.full}</p>
           </div>
           <div className="rounded-[2rem] bg-white/70 p-6">
             <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#dce6d0] text-[#496044]">
               <Clock3 className="h-5 w-5" aria-hidden="true" />
             </span>
-            <h2 className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-[#a27b68]">Jam buka</h2>
+            <h2 className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-[#7d5c4d]">Jam buka</h2>
             <p className="mt-3 text-sm leading-7 text-[#4d3d33]">Senin–Sabtu {siteConfig.hours.weekdays}</p>
             <p className="text-sm leading-7 text-[#4d3d33]">Minggu {siteConfig.hours.sunday}</p>
           </div>
           <div className="rounded-[2rem] bg-white/70 p-6">
-            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f7ece4] text-[#b9573e]">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-[#f7ece4] text-[#8f3d26]">
               <Coffee className="h-5 w-5" aria-hidden="true" />
             </span>
-            <h2 className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-[#a27b68]">Layanan</h2>
+            <h2 className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-[#7d5c4d]">Layanan</h2>
             <p className="mt-3 text-sm leading-7 text-[#4d3d33]">Takeaway dan dine-in, buka 7 hari seminggu.</p>
           </div>
         </div>

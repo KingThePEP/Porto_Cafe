@@ -124,7 +124,7 @@ export default async function MenuDetailPage({ params }: Params) {
       <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10">
         <Link
           href="/menu"
-          className="inline-flex items-center gap-2 text-sm font-semibold text-[#6d5b50] transition-colors hover:text-[#c9674b]"
+          className="inline-flex items-center gap-2 text-sm font-semibold text-[#6d5b50] transition-colors hover:text-[#a24931]"
         >
           <ArrowLeft className="h-4 w-4" aria-hidden="true" />
           Kembali ke menu
@@ -132,14 +132,14 @@ export default async function MenuDetailPage({ params }: Params) {
 
         <div className="mt-8 grid gap-10 lg:grid-cols-[1fr_0.8fr] lg:gap-16">
           <div>
-            <p className="animate-fade-up flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-[#a27b68]">
-              <span className="h-px w-8 bg-[#c9674b]" />
+            <p className="animate-fade-up flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-[#7d5c4d]">
+              <span className="h-px w-8 bg-[#a24931]" />
               {entry.groupName}
             </p>
             <h1 className="animate-fade-up delay-1 mt-5 text-balance text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#241c18] sm:text-5xl">
               {entry.name}
             </h1>
-            {entry.note ? <p className="mt-4 text-sm text-[#a27b68]">{entry.note}</p> : null}
+            {entry.note ? <p className="mt-4 text-sm text-[#7d5c4d]">{entry.note}</p> : null}
 
             <div className="mt-10 space-y-3">
               {sizes.map((size) => (
@@ -149,10 +149,10 @@ export default async function MenuDetailPage({ params }: Params) {
                 >
                   <div>
                     <p className="text-sm font-semibold text-[#30251f]">{size.note}</p>
-                    <p className="text-xs text-[#a27b68]">Ukuran {size.label}</p>
+                    <p className="text-xs text-[#7d5c4d]">Ukuran {size.label}</p>
                   </div>
                   <div className="flex flex-wrap items-center gap-3">
-                    <span className="text-lg font-semibold tracking-[-0.04em] text-[#c9674b]">
+                    <span className="text-lg font-semibold tracking-[-0.04em] text-[#a24931]">
                       {formatPrice(size.value)}
                     </span>
                     <AddToCartButton
@@ -170,7 +170,7 @@ export default async function MenuDetailPage({ params }: Params) {
                       target="_blank"
                       rel="noreferrer"
                       aria-label={`Order ${entry.name} ukuran ${size.label} via WhatsApp`}
-                      className="flex h-10 w-10 items-center justify-center rounded-full border border-[#d8c9b8] bg-white text-[#4d3d33] transition-colors hover:border-[#c9674b] hover:text-[#c9674b]"
+                      className="flex h-10 w-10 items-center justify-center rounded-full border border-[#d8c9b8] bg-white text-[#4d3d33] transition-colors hover:border-[#a24931] hover:text-[#a24931]"
                     >
                       <MessageCircle className="h-4 w-4" aria-hidden="true" />
                     </a>
@@ -211,7 +211,7 @@ export default async function MenuDetailPage({ params }: Params) {
               sizes="(max-width: 1024px) 100vw, 40vw"
               className="h-full w-full rounded-[1.5rem] object-cover"
             />
-            <p className="px-2 py-4 text-xs text-[#806e61]">
+            <p className="px-2 py-4 text-xs text-[#706155]">
               Foto menu {siteConfig.name}. Harga berlaku selama belum ada pembaruan.
             </p>
           </div>

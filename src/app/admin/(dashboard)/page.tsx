@@ -61,7 +61,7 @@ export default async function AdminOverviewPage() {
           return (
             <div key={card.label} className={adminCard}>
               <div className="flex items-center justify-between">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#a27b68]">
+                <span className="text-xs font-bold uppercase tracking-[0.14em] text-[#7d5c4d]">
                   {card.label}
                 </span>
                 <Icon className="h-4 w-4 text-[#c9b6a5]" aria-hidden="true" />
@@ -78,7 +78,7 @@ export default async function AdminOverviewPage() {
             <h2 className="text-lg font-black tracking-[-0.02em] text-[#241c18]">Pesanan terbaru</h2>
             <Link
               href="/admin/pesanan"
-              className="inline-flex items-center text-xs font-bold uppercase tracking-[0.12em] text-[#c9674b] hover:underline"
+              className="inline-flex items-center text-xs font-bold uppercase tracking-[0.12em] text-[#a24931] hover:underline"
             >
               Semua pesanan
               <ArrowUpRight className="ml-1 h-3.5 w-3.5" aria-hidden="true" />
@@ -103,7 +103,7 @@ export default async function AdminOverviewPage() {
                     <tr key={order.id} className="border-t border-[#f0e6db]">
                       <td className={adminTableCell}>
                         <span className="block font-semibold text-[#30251f]">{order.customerName}</span>
-                        <span className="block text-xs text-[#a27b68]">{order.customerPhone}</span>
+                        <span className="block text-xs text-[#7d5c4d]">{order.customerPhone}</span>
                       </td>
                       <td className={`${adminTableCell} whitespace-nowrap text-xs`}>
                         {formatDateTime(order.createdAt)}
@@ -132,7 +132,7 @@ export default async function AdminOverviewPage() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className="flex items-center gap-3 rounded-2xl border border-[#eee1d3] px-4 py-3 text-sm font-semibold text-[#4d3d33] transition-colors hover:border-[#c9674b] hover:text-[#c9674b]"
+                  className="flex items-center gap-3 rounded-2xl border border-[#eee1d3] px-4 py-3 text-sm font-semibold text-[#4d3d33] transition-colors hover:border-[#a24931] hover:text-[#a24931]"
                 >
                   <Icon className="h-4 w-4" aria-hidden="true" />
                   {link.label}

@@ -26,7 +26,7 @@ export function MenuBrowser({ groups }: { groups: MenuGroup[] }) {
             "rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
             activeGroup === "all"
               ? "border-[#241c18] bg-[#241c18] text-[#f8f1e8]"
-              : "border-[#d8c9b8] bg-white text-[#4d3d33] hover:border-[#c9674b] hover:text-[#c9674b]",
+              : "border-[#d8c9b8] bg-white text-[#4d3d33] hover:border-[#a24931] hover:text-[#a24931]",
           )}
         >
           Semua menu ({totalItems})
@@ -41,7 +41,7 @@ export function MenuBrowser({ groups }: { groups: MenuGroup[] }) {
               "rounded-full border px-4 py-2 text-sm font-semibold transition-colors",
               activeGroup === group.id
                 ? "border-[#241c18] bg-[#241c18] text-[#f8f1e8]"
-                : "border-[#d8c9b8] bg-white text-[#4d3d33] hover:border-[#c9674b] hover:text-[#c9674b]",
+                : "border-[#d8c9b8] bg-white text-[#4d3d33] hover:border-[#a24931] hover:text-[#a24931]",
             )}
           >
             {group.name} ({group.items.length})
@@ -51,7 +51,7 @@ export function MenuBrowser({ groups }: { groups: MenuGroup[] }) {
 
       <div className="mt-8 grid gap-6">
         {visibleGroups.map((group) => (
-          <MenuPriceTable key={group.id} group={group} />
+          <MenuPriceTable key={group.id} group={group} headingLevel="h2" />
         ))}
       </div>
     </div>

@@ -42,7 +42,7 @@ export function AddToCartButton({
       onClick={() => addItem({ productId, slug, name, groupName, size, sizeLabel, sizeNote, price })}
       aria-label={`Tambah ${name} ukuran ${sizeLabel} ke keranjang`}
       className={cn(
-        "inline-flex items-center justify-center gap-2 rounded-full border border-[#241c18] bg-[#241c18] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#c9674b] hover:border-[#c9674b]",
+        "inline-flex items-center justify-center gap-2 rounded-full border border-[#241c18] bg-[#241c18] px-4 py-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#a24931] hover:border-[#a24931]",
         className,
       )}
     >
@@ -67,7 +67,7 @@ export function CartLineControls({ item }: CartLineProps) {
           type="button"
           onClick={() => setQty(item.key, item.qty - 1)}
           aria-label={`Kurangi ${item.name} ukuran ${item.sizeLabel}`}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-[#d8c9b8] bg-white text-[#4d3d33] transition-colors hover:border-[#c9674b] hover:text-[#c9674b]"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-[#d8c9b8] bg-white text-[#4d3d33] transition-colors hover:border-[#a24931] hover:text-[#a24931]"
         >
           <Minus className="h-4 w-4" aria-hidden="true" />
         </button>
@@ -76,16 +76,16 @@ export function CartLineControls({ item }: CartLineProps) {
           type="button"
           onClick={() => setQty(item.key, item.qty + 1)}
           aria-label={`Tambah ${item.name} ukuran ${item.sizeLabel}`}
-          className="flex h-9 w-9 items-center justify-center rounded-full border border-[#d8c9b8] bg-white text-[#4d3d33] transition-colors hover:border-[#c9674b] hover:text-[#c9674b]"
+          className="flex h-9 w-9 items-center justify-center rounded-full border border-[#d8c9b8] bg-white text-[#4d3d33] transition-colors hover:border-[#a24931] hover:text-[#a24931]"
         >
           <Plus className="h-4 w-4" aria-hidden="true" />
         </button>
       </div>
-      <p className="text-sm font-semibold text-[#c9674b]">{formatPrice(item.price * item.qty)}</p>
+      <p className="text-sm font-semibold text-[#a24931]">{formatPrice(item.price * item.qty)}</p>
       <button
         type="button"
         onClick={() => removeItem(item.key)}
-        className="text-xs font-semibold text-[#a27b68] transition-colors hover:text-[#c9674b]"
+        className="text-xs font-semibold text-[#7d5c4d] transition-colors hover:text-[#a24931]"
       >
         Hapus
       </button>

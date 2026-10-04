@@ -5,6 +5,7 @@ import { buttonVariants } from "@/components/ui/button";
 import { JsonLd } from "@/components/json-ld";
 import { buildBreadcrumbJsonLd } from "@/lib/structured-data";
 import { siteConfig } from "@/lib/site-config";
+import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
   title: "Kontak & Reservasi",
@@ -20,12 +21,12 @@ export default function ContactPage() {
     <JsonLd data={buildBreadcrumbJsonLd([{"name": "Beranda", "path": "/"}, {"name": "Kontak", "path": "/kontak"}])} />
     <main className="pt-32 sm:pt-36">
       <section className="mx-auto max-w-7xl px-5 py-10 sm:px-8 lg:px-10">
-        <p className="animate-fade-up flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-[#a27b68]">
-          <span className="h-px w-8 bg-[#c9674b]" />
+        <p className="animate-fade-up flex items-center gap-3 text-xs font-bold uppercase tracking-[0.24em] text-[#7d5c4d]">
+          <span className="h-px w-8 bg-[#a24931]" />
           Kontak
         </p>
         <h1 className="animate-fade-up delay-1 mt-5 max-w-3xl text-balance text-4xl font-semibold leading-tight tracking-[-0.06em] text-[#241c18] sm:text-6xl">
-          Reservasi meja atau <span className="text-[#c9674b]">tanya menu.</span>
+          Reservasi meja atau <span className="text-[#a24931]">tanya menu.</span>
         </h1>
         <p className="mt-6 max-w-2xl text-base leading-8 text-[#6d5b50]">
           Isi form di samping atau langsung chat kami di WhatsApp. Balasan paling cepat lewat WhatsApp
@@ -43,23 +44,23 @@ export default function ContactPage() {
             <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/70 text-[#496044]">
               <MapPin className="h-5 w-5" aria-hidden="true" />
             </span>
-            <h2 className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-[#a27b68]">Alamat</h2>
+            <h2 className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-[#7d5c4d]">Alamat</h2>
             <p className="mt-3 text-sm leading-7 text-[#4d3d33]">{siteConfig.address.full}</p>
             <a
               href={siteConfig.mapsUrl}
               target="_blank"
               rel="noreferrer"
-              className="mt-4 inline-block text-xs font-bold uppercase tracking-[0.12em] text-[#c9674b] hover:underline"
+              className="mt-4 inline-block text-xs font-bold uppercase tracking-[0.12em] text-[#a24931] hover:underline"
             >
               Buka di Maps
             </a>
           </div>
 
           <div className="rounded-[2rem] bg-[#f2e6da] p-6">
-            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/70 text-[#c9674b]">
+            <span className="flex h-11 w-11 items-center justify-center rounded-full bg-white/70 text-[#a24931]">
               <Clock3 className="h-5 w-5" aria-hidden="true" />
             </span>
-            <h2 className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-[#a27b68]">Jam buka</h2>
+            <h2 className="mt-5 text-xs font-bold uppercase tracking-[0.2em] text-[#7d5c4d]">Jam buka</h2>
             <p className="mt-3 text-sm leading-7 text-[#4d3d33]">Senin–Sabtu {siteConfig.hours.weekdays}</p>
             <p className="text-sm leading-7 text-[#4d3d33]">Minggu {siteConfig.hours.sunday}</p>
           </div>
@@ -74,7 +75,10 @@ export default function ContactPage() {
               href={siteConfig.whatsapp.orderLink}
               target="_blank"
               rel="noreferrer"
-              className={`${buttonVariants({ variant: "secondary", size: "sm" })} mt-5 border-white/20 bg-white/10 text-white hover:border-white/40 hover:bg-white/20 hover:text-white`}
+              className={cn(
+                buttonVariants({ variant: "secondary", size: "sm" }),
+                "mt-5 border-white/20 bg-white/10 text-white hover:border-white/40 hover:bg-white/20 hover:text-white",
+              )}
             >
               Chat sekarang
             </a>

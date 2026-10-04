@@ -26,7 +26,7 @@ const orderSchema = z.object({
 export type OrderFormValues = z.infer<typeof orderSchema>;
 
 const fieldClass =
-  "w-full rounded-2xl border border-[#d8c9b8] bg-white px-4 py-3 text-sm text-[#30251f] outline-none transition-colors placeholder:text-[#a27b68] focus:border-[#c9674b]";
+  "w-full rounded-2xl border border-[#d8c9b8] bg-white px-4 py-3 text-sm text-[#30251f] outline-none transition-colors placeholder:text-[#7d5c4d] focus:border-[#a24931]";
 
 function buildWhatsappLink(items: CartItem[], values: OrderFormValues, total: number) {
   const lines = items.map(
@@ -106,7 +106,7 @@ export function CheckoutForm({ total }: { total: number }) {
   return (
     <form onSubmit={onSubmit} className="mt-6 space-y-4" noValidate>
       <div>
-        <label htmlFor="customerName" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#a27b68]">
+        <label htmlFor="customerName" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#7d5c4d]">
           Nama
         </label>
         <input
@@ -117,11 +117,11 @@ export function CheckoutForm({ total }: { total: number }) {
           aria-invalid={Boolean(errors.customerName)}
           {...register("customerName")}
         />
-        {errors.customerName ? <p className="mt-1 text-xs text-[#c9674b]">{errors.customerName.message}</p> : null}
+        {errors.customerName ? <p className="mt-1 text-xs text-[#a24931]">{errors.customerName.message}</p> : null}
       </div>
 
       <div>
-        <label htmlFor="customerPhone" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#a27b68]">
+        <label htmlFor="customerPhone" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#7d5c4d]">
           Nomor WhatsApp
         </label>
         <input
@@ -133,11 +133,11 @@ export function CheckoutForm({ total }: { total: number }) {
           aria-invalid={Boolean(errors.customerPhone)}
           {...register("customerPhone")}
         />
-        {errors.customerPhone ? <p className="mt-1 text-xs text-[#c9674b]">{errors.customerPhone.message}</p> : null}
+        {errors.customerPhone ? <p className="mt-1 text-xs text-[#a24931]">{errors.customerPhone.message}</p> : null}
       </div>
 
       <div>
-        <span className="block text-xs font-bold uppercase tracking-[0.16em] text-[#a27b68]">Tipe pesanan</span>
+        <span className="block text-xs font-bold uppercase tracking-[0.16em] text-[#7d5c4d]">Tipe pesanan</span>
         <div className="mt-2 grid grid-cols-2 gap-2">
           {[
             { value: "pickup", label: "Takeaway" },
@@ -152,7 +152,7 @@ export function CheckoutForm({ total }: { total: number }) {
                 "rounded-2xl border px-4 py-3 text-sm font-semibold transition-colors",
                 orderType === option.value
                   ? "border-[#241c18] bg-[#241c18] text-white"
-                  : "border-[#d8c9b8] bg-white text-[#4d3d33] hover:border-[#c9674b]",
+                  : "border-[#d8c9b8] bg-white text-[#4d3d33] hover:border-[#a24931]",
               )}
             >
               {option.label}
@@ -163,7 +163,7 @@ export function CheckoutForm({ total }: { total: number }) {
 
       {orderType === "delivery" ? (
         <div>
-          <label htmlFor="address" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#a27b68]">
+          <label htmlFor="address" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#7d5c4d]">
             Alamat pengiriman
           </label>
           <textarea
@@ -174,12 +174,12 @@ export function CheckoutForm({ total }: { total: number }) {
             aria-invalid={Boolean(errors.address)}
             {...register("address")}
           />
-          {errors.address ? <p className="mt-1 text-xs text-[#c9674b]">{errors.address.message}</p> : null}
+          {errors.address ? <p className="mt-1 text-xs text-[#a24931]">{errors.address.message}</p> : null}
         </div>
       ) : null}
 
       <div>
-        <label htmlFor="notes" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#a27b68]">
+        <label htmlFor="notes" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#7d5c4d]">
           Catatan (opsional)
         </label>
         <textarea
@@ -190,12 +190,12 @@ export function CheckoutForm({ total }: { total: number }) {
           aria-invalid={Boolean(errors.notes)}
           {...register("notes")}
         />
-        {errors.notes ? <p className="mt-1 text-xs text-[#c9674b]">{errors.notes.message}</p> : null}
+        {errors.notes ? <p className="mt-1 text-xs text-[#a24931]">{errors.notes.message}</p> : null}
       </div>
 
       <div className="rounded-2xl bg-[#f2e6da] p-4">
-        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#a27b68]">Total</p>
-        <p className="mt-1 text-xl font-semibold tracking-[-0.04em] text-[#c9674b]">{formatPrice(total)}</p>
+        <p className="text-xs font-bold uppercase tracking-[0.16em] text-[#7d5c4d]">Total</p>
+        <p className="mt-1 text-xl font-semibold tracking-[-0.04em] text-[#a24931]">{formatPrice(total)}</p>
       </div>
 
       {serverError ? (
@@ -207,7 +207,7 @@ export function CheckoutForm({ total }: { total: number }) {
       <button
         type="submit"
         disabled={isSubmitting}
-        className="flex w-full items-center justify-center rounded-full bg-[#241c18] px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#c9674b] disabled:opacity-60"
+        className="flex w-full items-center justify-center rounded-full bg-[#241c18] px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#a24931] disabled:opacity-60"
       >
         {isSubmitting ? (
           <>
@@ -226,7 +226,7 @@ export function CheckoutForm({ total }: { total: number }) {
         href={whatsappLink}
         target="_blank"
         rel="noreferrer"
-        className="flex w-full items-center justify-center rounded-full border border-[#d8c9b8] bg-white px-5 py-3.5 text-sm font-semibold text-[#30251f] transition-colors hover:border-[#c9674b] hover:text-[#c9674b]"
+        className="flex w-full items-center justify-center rounded-full border border-[#d8c9b8] bg-white px-5 py-3.5 text-sm font-semibold text-[#30251f] transition-colors hover:border-[#a24931] hover:text-[#a24931]"
       >
         <MessageCircle className="mr-2 h-4 w-4" aria-hidden="true" />
         Lewati form, order via WhatsApp

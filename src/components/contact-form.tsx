@@ -30,7 +30,7 @@ const contactSchema = z
 export type ContactFormValues = z.infer<typeof contactSchema>;
 
 const fieldClass =
-  "w-full rounded-2xl border border-[#d8c9b8] bg-white px-4 py-3 text-sm text-[#30251f] outline-none transition-colors placeholder:text-[#a27b68] focus:border-[#c9674b]";
+  "w-full rounded-2xl border border-[#d8c9b8] bg-white px-4 py-3 text-sm text-[#30251f] outline-none transition-colors placeholder:text-[#7d5c4d] focus:border-[#a24931]";
 
 export function ContactForm() {
   const [serverState, setServerState] = useState<{ tone: "success" | "error"; text: string } | null>(null);
@@ -119,7 +119,7 @@ export function ContactForm() {
                 "flex items-center justify-center gap-2 rounded-2xl border px-4 py-3 text-sm font-semibold transition-colors",
                 type === option.value
                   ? "border-[#241c18] bg-[#241c18] text-white"
-                  : "border-[#d8c9b8] bg-white text-[#4d3d33] hover:border-[#c9674b]",
+                  : "border-[#d8c9b8] bg-white text-[#4d3d33] hover:border-[#a24931]",
               )}
             >
               <Icon className="h-4 w-4" aria-hidden="true" />
@@ -137,7 +137,7 @@ export function ContactForm() {
       ) : null}
 
       <div>
-        <label htmlFor="contactName" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#a27b68]">
+        <label htmlFor="contactName" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#7d5c4d]">
           Nama
         </label>
         <input
@@ -148,12 +148,12 @@ export function ContactForm() {
           aria-invalid={Boolean(errors.name)}
           {...register("name")}
         />
-        {errors.name ? <p className="mt-1 text-xs text-[#c9674b]">{errors.name.message}</p> : null}
+        {errors.name ? <p className="mt-1 text-xs text-[#a24931]">{errors.name.message}</p> : null}
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2">
         <div>
-          <label htmlFor="contactPhone" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#a27b68]">
+          <label htmlFor="contactPhone" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#7d5c4d]">
             WhatsApp
           </label>
           <input
@@ -165,11 +165,11 @@ export function ContactForm() {
             aria-invalid={Boolean(errors.phone)}
             {...register("phone")}
           />
-          {errors.phone ? <p className="mt-1 text-xs text-[#c9674b]">{errors.phone.message}</p> : null}
+          {errors.phone ? <p className="mt-1 text-xs text-[#a24931]">{errors.phone.message}</p> : null}
         </div>
 
         <div>
-          <label htmlFor="contactEmail" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#a27b68]">
+          <label htmlFor="contactEmail" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#7d5c4d]">
             Email
           </label>
           <input
@@ -180,12 +180,12 @@ export function ContactForm() {
             aria-invalid={Boolean(errors.email)}
             {...register("email")}
           />
-          {errors.email ? <p className="mt-1 text-xs text-[#c9674b]">{errors.email.message}</p> : null}
+          {errors.email ? <p className="mt-1 text-xs text-[#a24931]">{errors.email.message}</p> : null}
         </div>
       </div>
 
       <div>
-        <label htmlFor="contactSubject" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#a27b68]">
+        <label htmlFor="contactSubject" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#7d5c4d]">
           Topik <span className="font-normal normal-case tracking-normal">(opsional)</span>
         </label>
         <input
@@ -198,7 +198,7 @@ export function ContactForm() {
       </div>
 
       <div>
-        <label htmlFor="contactMessage" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#a27b68]">
+        <label htmlFor="contactMessage" className="block text-xs font-bold uppercase tracking-[0.16em] text-[#7d5c4d]">
           Pesan
         </label>
         <textarea
@@ -209,7 +209,7 @@ export function ContactForm() {
           aria-invalid={Boolean(errors.message)}
           {...register("message")}
         />
-        {errors.message ? <p className="mt-1 text-xs text-[#c9674b]">{errors.message.message}</p> : null}
+        {errors.message ? <p className="mt-1 text-xs text-[#a24931]">{errors.message.message}</p> : null}
       </div>
 
       {serverState ? (
@@ -230,7 +230,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="flex flex-1 items-center justify-center rounded-full bg-[#241c18] px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#c9674b] disabled:opacity-60"
+          className="flex flex-1 items-center justify-center rounded-full bg-[#241c18] px-5 py-3.5 text-sm font-semibold text-white transition-colors hover:bg-[#a24931] disabled:opacity-60"
         >
           {isSubmitting ? (
             <>
@@ -249,7 +249,7 @@ export function ContactForm() {
           href={whatsappHref}
           target="_blank"
           rel="noreferrer"
-          className="flex flex-1 items-center justify-center rounded-full border border-[#d8c9b8] bg-white px-5 py-3.5 text-sm font-semibold text-[#30251f] transition-colors hover:border-[#c9674b] hover:text-[#c9674b]"
+          className="flex flex-1 items-center justify-center rounded-full border border-[#d8c9b8] bg-white px-5 py-3.5 text-sm font-semibold text-[#30251f] transition-colors hover:border-[#a24931] hover:text-[#a24931]"
         >
           <MessageCircle className="mr-2 h-4 w-4" aria-hidden="true" />
           Kirat via WhatsApp

@@ -105,7 +105,7 @@ export function ImageUploadField({
 
         <label
           htmlFor={id}
-          className="inline-flex cursor-pointer items-center rounded-full border border-[#d8c9b8] bg-white px-4 py-2 text-xs font-semibold text-[#30251f] transition-colors hover:border-[#c9674b] hover:text-[#c9674b]"
+          className="inline-flex cursor-pointer items-center rounded-full border border-[#d8c9b8] bg-white px-4 py-2 text-xs font-semibold text-[#30251f] transition-colors hover:border-[#a24931] hover:text-[#a24931]"
         >
           {isUploading ? (
             <>

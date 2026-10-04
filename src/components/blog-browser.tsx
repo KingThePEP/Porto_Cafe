@@ -36,7 +36,7 @@ export function BlogBrowser({
       <div className="flex flex-col gap-4">
         <div className="relative">
           <Search
-            className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#a27b68]"
+            className="pointer-events-none absolute left-4 top-1/2 h-4 w-4 -translate-y-1/2 text-[#7d5c4d]"
             aria-hidden="true"
           />
           <input
@@ -45,7 +45,7 @@ export function BlogBrowser({
             onChange={(event) => setQuery(event.target.value)}
             placeholder="Cari artikel, tag, atau topik..."
             aria-label="Cari artikel"
-            className="w-full rounded-full border border-[#d8c9b8] bg-white py-3 pl-11 pr-4 text-sm text-[#30251f] outline-none transition-colors placeholder:text-[#a27b68] focus:border-[#c9674b]"
+            className="w-full rounded-full border border-[#d8c9b8] bg-white py-3 pl-11 pr-4 text-sm text-[#30251f] outline-none transition-colors placeholder:text-[#7d5c4d] focus:border-[#a24931]"
           />
         </div>
 
@@ -59,7 +59,7 @@ export function BlogBrowser({
                 "rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] transition-colors",
                 activeTag === null
                   ? "border-[#241c18] bg-[#241c18] text-white"
-                  : "border-[#d8c9b8] bg-white text-[#6d5b50] hover:border-[#c9674b]",
+                  : "border-[#d8c9b8] bg-white text-[#6d5b50] hover:border-[#a24931]",
               )}
             >
               Semua
@@ -74,7 +74,7 @@ export function BlogBrowser({
                   "rounded-full border px-4 py-2 text-xs font-bold uppercase tracking-[0.12em] transition-colors",
                   activeTag === tag.tag
                     ? "border-[#241c18] bg-[#241c18] text-white"
-                    : "border-[#d8c9b8] bg-white text-[#6d5b50] hover:border-[#c9674b]",
+                    : "border-[#d8c9b8] bg-white text-[#6d5b50] hover:border-[#a24931]",
                 )}
               >
                 {tag.tag} ({tag.count})
@@ -85,7 +85,7 @@ export function BlogBrowser({
       </div>
 
       {filtered.length === 0 ? (
-        <p className="mt-10 rounded-[2rem] border border-dashed border-[#d8c9b8] bg-[#fdfaf6] px-6 py-12 text-center text-sm text-[#a27b68]">
+        <p className="mt-10 rounded-[2rem] border border-dashed border-[#d8c9b8] bg-[#fdfaf6] px-6 py-12 text-center text-sm text-[#7d5c4d]">
           Belum ada artikel yang cocok. Coba kata kunci lain atau lihat semua artikel.
         </p>
       ) : (
@@ -108,11 +108,11 @@ export function BlogBrowser({
                 ) : null}
                 <span className="flex flex-1 flex-col p-6">
                   {post.tags.length > 0 ? (
-                    <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#c9674b]">
+                    <span className="text-[10px] font-bold uppercase tracking-[0.18em] text-[#a24931]">
                       {post.tags.join(" · ")}
                     </span>
                   ) : null}
-                  <span className="mt-3 text-lg font-semibold leading-snug tracking-[-0.03em] text-[#241c18] group-hover:text-[#c9674b]">
+                  <span className="mt-3 text-lg font-semibold leading-snug tracking-[-0.03em] text-[#241c18] group-hover:text-[#a24931]">
                     {post.title}
                   </span>
                   <span className="mt-3 line-clamp-3 text-sm leading-7 text-[#6d5b50]">
