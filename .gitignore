@@ -30,7 +30,10 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env*.local
+# Semua varian `.env*` diabaikan (`.env`, `.env.local`, `.env.production`, dst.),
+# bukan hanya `.env*.local`, supaya kredensial tidak ikut ter-commit.
+.env*
+!.env.example
 
 # vercel
 .vercel
